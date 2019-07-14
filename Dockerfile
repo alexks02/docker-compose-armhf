@@ -5,21 +5,17 @@
 FROM resin/rpi-raspbian:jessie
 MAINTAINER EasyPi Software Foundation
 
-COPY bin/ /usr/bin/
-RUN [ "cross-build-start" ]
+#COPY bin/ /usr/bin/
+#RUN [ "cross-build-start" ]
 
-ENV DOCKER_COMPOSE_VERSION 1.22.0
+ENV DOCKER_COMPOSE_VERSION 1.24.0
 ENV PYINSTALLER_VERSION 3.2.1
 
 RUN set -xe \
     && apt-get update \
-    && apt-get install -y build-essential \
-                          curl \
-                          python-dev \
-                          zlib1g-dev \
+    && apt-get install -y build-essential curl python-dev zlib1g-dev libffi6 libffi-dev libssl-dev \
     && curl https://bootstrap.pypa.io/get-pip.py | python \
-    && pip install docker-compose==$DOCKER_COMPOSE_VERSION \
-                   pyinstaller==$PYINSTALLER_VERSION \
+    && pip install docker-compose==$DOCKER_COMPOSE_VERSION pyinstaller==$PYINSTALLER_VERSION \
     && cd /usr/local/lib/python2.7/dist-packages \
     && pip download --no-binary :all: --no-deps pyinstaller==$PYINSTALLER_VERSION \
     && tar xjf PyInstaller-$PYINSTALLER_VERSION.tar.bz2 \
