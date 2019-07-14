@@ -1,0 +1,8 @@
+version: "2"
+services:
+  docker-compose-armhf:
+    image: alexks02/docker-compose-armhf:latest
+    container_name: docker-compose-armhf
+    build:
+      context: .
+      dockerfile: ./Dockerfile
