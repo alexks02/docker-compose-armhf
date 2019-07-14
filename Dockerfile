@@ -5,8 +5,8 @@
 FROM resin/rpi-raspbian:jessie
 MAINTAINER EasyPi Software Foundation
 
-#COPY bin/ /usr/bin/
-#RUN [ "cross-build-start" ]
+COPY bin/ /usr/bin/
+RUN [ "cross-build-start" ]
 
 ENV DOCKER_COMPOSE_VERSION 1.24.0
 ENV PYINSTALLER_VERSION 3.2.1
